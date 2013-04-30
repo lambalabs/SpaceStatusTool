@@ -51,11 +51,27 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 3032,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/style.css",
+			"settings":
+			{
+				"buffer_size": 11669,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 265.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
@@ -91,7 +107,7 @@
 				"Preferences: Browse Packages"
 			]
 		],
-		"width": 424.0
+		"width": 568.0
 	},
 	"console":
 	{
@@ -108,12 +124,17 @@
 	},
 	"file_history":
 	[
+		"/C/wamp/www/LambaLabs/_Tools/SpaceUsage/src/js/script.js",
+		"/C/wamp/www/LambaLabs/_Tools/SpaceUsage/src/index.html",
+		"/C/wamp/www/LambaLabs/_Tools/SpaceUsage/src/ifst.html",
+		"/C/wamp/www/LambaLabs/_Tools/SpaceUsage/src/public.php",
+		"/C/wamp/www/LambaLabs/_Tools/SpaceUsage/src/status.php",
+		"/C/wamp/www/LambaLabs/SpaceUsage/src/ifst.html",
 		"/C/wamp/www/LambaLabs/SpaceUsage/src/status.php",
 		"/C/wamp/www/LambaLabs/SpaceUsage/src/public.php",
 		"/C/wamp/www/LambaLabs/SpaceUsage/src/arduino/README.md",
 		"/C/wamp/www/LambaLabs/SpaceUsage/src/js/script.js",
 		"/C/wamp/www/LambaLabs/SpaceUsage/src/index.html",
-		"/C/wamp/www/LambaLabs/SpaceUsage/src/ifst.html",
 		"/C/wamp/www/LambaLabs/SpaceUsage/src/libs/PachubeAPI.php",
 		"/C/wamp/www/LambaLabs/SpaceUsage/src/css/style-iframe.css",
 		"/C/wamp/www/LambaLabs/SpaceUsage/src/css/style.css",
@@ -153,6 +174,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"audio",
 			"pachube",
 			">\n",
 			" \n",
@@ -201,6 +223,62 @@
 		{
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"settings":
+					{
+						"buffer_size": 3032,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2548,
+								2548
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 126.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "css/style.css",
+					"settings":
+					{
+						"buffer_size": 11669,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8385,
+								8385
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2538.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
