@@ -8,8 +8,6 @@
    */
   (function( $ ) {
       
-      var audioClip = $("#sfxClip")[0];
-
       // Turn on the lamba
       $.fn.TurnOnTheLamba = function()
       {
@@ -20,7 +18,6 @@
           for (var i = 0; i < delays.length; i++)
           {
               setTimeout(function () {
-                  audioClip.play();
                   $(".lambaicon").toggleClass('on');
                   c++;
 
@@ -38,7 +35,6 @@
           for (var i = 0; i < delays.length; i++)
           {
               setTimeout(function () {
-                  audioClip.play();
                   $(".lambaicon").toggleClass('on');
                   c++;
 
@@ -58,7 +54,9 @@
 
           // Getting the lamba status
           var request = $.ajax({
+              type: "GET",
               url: "status.php",
+              data: {'q': 'cv'},
               cache: false,
               dataType: "json"
           });
@@ -87,23 +85,105 @@
           });
 
         }
+
+
+        // General purpose function to plot the status log
+        // chart
+        $.fn.PlotLogStatusChart = function()
+        {
+          // This is for all plots, change Date axis to local timezone
+          Highcharts.setOptions({
+              global : {
+                  useUTC : true
+              }
+          });
+
+          // Get the data and Plot the diagram
+          $.get( "status.php?q=log", function( jsonData ) {
+              
+              // Parse the data
+              newData = [];
+              $.each(jsonData.log, function(key, value) 
+              {
+                newData.push( [ new Date( Date.parse(value.at) ).getTime(), parseInt(value.value) ] );
+              });
+
+
+              // Plot the chart
+              $('#status-log-chart').highcharts({
+                  chart: {
+                      type: 'spline'
+                  },
+                  title: {
+                      text: 'Space Status Log Chart'
+                  },
+                  subtitle: {
+                      text: 'LLBH Status over the span of 24 hours (Beirut Time)'
+                  },
+                  xAxis: {
+                      type: 'datetime',
+                      labels: {
+                      formatter: function() {
+                           return Highcharts.dateFormat("%I:%M %p ", this.value);
+                      }
+                    }
+                  },
+                  yAxis: {
+                      title: {
+                          text: 'Space Status Value'
+                      },
+                      labels: {
+                          formatter: function() {
+                              return this.value;
+                          }
+                      }
+                  },
+                  tooltip: {
+                      formatter: function() {
+                        return 'The Space was: ' + ((this.y == 1) ? "Open" : "Closed") + '</b><br/> on ' + Highcharts.dateFormat("%I:%M %p ", this.x);
+                      }
+                  },
+                  plotOptions: {
+                      area: {
+                          marker: {
+                              enabled: false,
+                              symbol: 'circle',
+                              radius: 3,
+                              states: {
+                                  hover: {
+                                      enabled: true
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  series: [{
+                      name: 'Status',
+                      data: newData
+                  }]
+              });
+          });
+        }
   })( jQuery );
 
 
   $(document).ready(function()
-    {
-      var ct = setInterval(timer, 1000);
-      var c = 3;
+  {
+    var ct = setInterval(timer, 1000);
+    var c = 3;
 
-      function timer()
+    function timer()
+    {
+      c--;
+      $(".status-text").html('Fetching Status in ' + c);
+      if (c < 1)
       {
-        c--;
-        $(".status-text").html('Fetching Status in ' + c);
-        if (c < 1)
-        {
-          $(".status-text").html('...');
-          clearInterval(ct);
-          $.fn.GetLambaStatus();
-        }
+        $(".status-text").html('...');
+        clearInterval(ct);
+        $.fn.GetLambaStatus();
       }
-    });
+    }
+
+    // Plot the chart
+    $.fn.PlotLogStatusChart();
+  });
